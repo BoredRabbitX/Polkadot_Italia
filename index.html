@@ -1,118 +1,94 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en" class="__variable_e64f39 __variable_d501d1 __variable_e896d9">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Polkadot | Software for Sovereignty</title>
     <link rel="icon" type="image/png" href="https://github.com/Tomen/polkadot-second-age-brand-kit/blob/main/icon/png/256x256/polkadot-icon__cool-gray-on-near-black.png?raw=true">
-    
+
     <style>
-        /* --- FONT FACE DEFINITIONS (DAL TUO CSS) --- */
+        /* --- FONT FACE DEFINITIONS (Dalle tue variabili Next.js) --- */
         @font-face {
             font-family: 'DM Sans';
-            font-style: normal;
-            font-weight: 300 700;
-            font-display: swap;
+            font-style: normal; font-weight: 300 700; font-display: swap;
             src: url(https://fonts.gstatic.com/s/dmsans/v14/rP2Fp2ywxg089UriCZa4Hz-A.woff2) format("woff2");
         }
         @font-face {
             font-family: "DM Serif Display";
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
+            font-style: normal; font-weight: 400; font-display: swap;
             src: url(https://fonts.gstatic.com/s/dmserifdisplay/v15/-F6ufjN0uS2ttSbcK3lFE9v6v6icCIJ7.woff2) format("woff2");
         }
 
         :root {
+            --font-sans: 'DM Sans', sans-serif;
+            --font-serif: 'DM Serif Display', serif;
             --grey-950: #0F0F0F;
             --grey-900: #1C1917;
             --grey-800: #292524;
             --grey-400: #A8A29E;
             --cool-gray: #E5E7EB;
-            --font-sans: "DM Sans", sans-serif;
-            --font-serif: "DM Serif Display", serif;
+            --accent: #E6007A;
         }
 
+        /* RESET TOTALE PER LARGHEZZA FULL */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
+        
         body, html {
             background-color: var(--grey-950);
             color: var(--cool-gray);
             font-family: var(--font-sans);
             overflow-x: hidden;
             width: 100%;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- NAV --- */
+        /* --- NAVIGATION --- */
         nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            height: 64px;
-            background-color: var(--grey-950);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 40px;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; width: 100%; height: 64px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 40px; z-index: 1000; background: var(--grey-950);
         }
-        .nav-left {
-            display: flex; align-items: center; gap: 12px;
-            font-family: var(--font-serif); font-size: 20px; color: #FFF;
-        }
+        .nav-logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-serif); font-size: 20px; color: #FFF; text-decoration: none; }
         .nav-links { display: flex; gap: 32px; align-items: center; }
-        .nav-links a { color: var(--cool-gray); text-decoration: none; font-size: 13px; opacity: 0.8; }
-        .btn-sign { background: var(--grey-800); padding: 8px 16px; border-radius: 8px; font-weight: 600; }
+        .nav-links a { font-size: 13px; text-decoration: none; color: var(--cool-gray); opacity: 0.7; transition: 0.2s; }
+        .nav-links a:hover { opacity: 1; }
+        .btn-sign { background: var(--grey-800); padding: 8px 16px; border-radius: 8px; font-weight: 600; opacity: 1 !important; }
 
-        /* --- HERO ZONE CON CANVAS (FULL WIDTH) --- */
+        /* --- HERO SECTION (THREE.JS STYLE) --- */
         .hero {
             position: relative;
-            width: 100vw;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--grey-950);
-            margin: 0;
-            padding: 0;
+            width: 100vw; height: 85vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: var(--grey-950); overflow: hidden;
         }
 
-        /* Il canvas di Three.js copre tutta la hero */
-        #noiseCanvas {
-            position: absolute;
-            top: 0; left: 0;
+        #grainCanvas {
+            position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.25;
+            z-index: 1; pointer-events: none; opacity: 0.3;
         }
 
-        .title {
+        .hero-content { position: relative; z-index: 2; text-align: center; }
+        
+        .hero-title {
             font-family: var(--font-serif);
-            font-size: clamp(80px, 10vw, 120px);
-            letter-spacing: -3px;
-            z-index: 2;
-            color: #FFFFFF;
-            position: relative;
+            font-size: clamp(80px, 12vw, 140px);
+            line-height: 0.9; letter-spacing: -0.04em; color: #FFF;
         }
 
-        .subtitle-container {
-            height: 40px; margin-top: 20px;
-            position: relative; width: 100%; z-index: 2;
-            text-align: center;
+        .subtitle-wrapper { height: 40px; margin-top: 24px; position: relative; }
+        .subtitle-item {
+            position: absolute; width: 100%; left: 0;
+            font-size: clamp(18px, 2.5vw, 24px); font-weight: 300;
+            color: var(--grey-400); opacity: 0;
+            animation: slideText 16s infinite;
         }
-        .subtitle {
-            font-size: clamp(18px, 2.5vw, 22px);
-            font-weight: 300; opacity: 0; position: absolute;
-            width: 100%; left: 0; color: var(--grey-400);
-            animation: fadeTransition 16s infinite;
-        }
-        .subtitle:nth-child(1) { animation-delay: 0s; }
-        .subtitle:nth-child(2) { animation-delay: 4s; }
-        .subtitle:nth-child(3) { animation-delay: 8s; }
-        .subtitle:nth-child(4) { animation-delay: 12s; }
+        .subtitle-item:nth-child(1) { animation-delay: 0s; }
+        .subtitle-item:nth-child(2) { animation-delay: 4s; }
+        .subtitle-item:nth-child(3) { animation-delay: 8s; }
+        .subtitle-item:nth-child(4) { animation-delay: 12s; }
 
-        @keyframes fadeTransition {
+        @keyframes slideText {
             0% { opacity: 0; transform: translateY(10px); }
             5% { opacity: 1; transform: translateY(0); }
             20% { opacity: 1; transform: translateY(0); }
@@ -120,51 +96,62 @@
             100% { opacity: 0; }
         }
 
-        /* --- CONTENT SECTIONS --- */
-        .sub-hero-section { background-color: #1a1715; padding: 100px 40px; }
-        .feature-grid {
+        /* --- CONTENT GRID --- */
+        .features-section { background: #1a1715; padding: 120px 40px; }
+        .grid-container {
+            max-width: 1200px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 60px; max-width: 1200px; margin: 0 auto;
+            gap: 80px;
         }
-        .feature-card h2 { font-family: var(--font-serif); font-size: 28px; margin-bottom: 20px; color: #FFF; }
-        
-        .main-content { background-color: var(--grey-950); padding: 100px 40px; }
-        .problem-way-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 100px; max-width: 1100px; margin: 0 auto 100px;
+        .feature-card h2 { font-family: var(--font-serif); font-size: 32px; margin-bottom: 20px; color: #FFF; }
+        .feature-card p { font-size: 16px; line-height: 1.6; color: var(--grey-400); }
+
+        .manifesto-section { padding: 120px 40px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .manifesto-section h2 { 
+            font-family: var(--font-serif); font-size: clamp(32px, 5vw, 48px); 
+            color: #FFF; margin-top: 40px; line-height: 1.1;
         }
+        .manifesto-section p { font-size: 20px; color: var(--grey-400); line-height: 1.6; }
 
         footer {
-            background-color: #12100e; padding: 40px 60px;
-            display: flex; justify-content: space-between; border-top: 1px solid #1c1917; font-size: 13px;
+            padding: 60px 40px; border-top: 1px solid var(--grey-900);
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px; color: var(--grey-400);
         }
+        .footer-links { display: flex; gap: 30px; }
     </style>
 </head>
-<body>
+<body class="font-sans antialiased">
 
     <nav>
-        <div class="nav-left">
-            <img src="https://github.com/Tomen/polkadot-second-age-brand-kit/blob/main/icon/png/256x256/polkadot-icon__cool-gray-on-near-black.png?raw=true" alt="Logo" style="width:24px;">
+        <a href="/" class="nav-logo">
+            <img src="https://github.com/Tomen/polkadot-second-age-brand-kit/blob/main/icon/png/256x256/polkadot-icon__cool-gray-on-near-black.png?raw=true" width="24" height="24" alt="Polkadot">
             Polkadot
-        </div>
+        </a>
         <div class="nav-links">
-            <a href="#">Philosophy</a><a href="#">Tech</a><a href="#">Platform</a><a href="#">Ecosystem</a><a href="#" class="btn-sign">Sign in</a>
+            <a href="#">Philosophy</a>
+            <a href="#">Tech</a>
+            <a href="#">Platform</a>
+            <a href="#">Ecosystem</a>
+            <a href="#" class="btn-sign">Sign in</a>
         </div>
     </nav>
 
-    <section class="hero" id="heroZone">
-        <canvas id="noiseCanvas"></canvas>
-        <h1 class="title">Polkadot</h1>
-        <div class="subtitle-container">
-            <div class="subtitle">Crypto beyond currency.</div>
-            <div class="subtitle">Products for People.</div>
-            <div class="subtitle">Software for sovereignty.</div>
-            <div class="subtitle">Instruments for individuality.</div>
+    <section class="hero" id="hero">
+        <canvas id="grainCanvas"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-title">Polkadot</h1>
+            <div class="subtitle-wrapper">
+                <div class="subtitle-item">Crypto beyond currency.</div>
+                <div class="subtitle-item">Products for People.</div>
+                <div class="subtitle-item">Software for sovereignty.</div>
+                <div class="subtitle-item">Instruments for individuality.</div>
+            </div>
         </div>
     </section>
 
-    <section class="sub-hero-section">
-        <div class="feature-grid">
+    <section class="features-section">
+        <div class="grid-container">
             <div class="feature-card">
                 <h2>Honest by design</h2>
                 <p>The rules are in the product, not buried in fine print. We couldn't change that even if we wanted to.</p>
@@ -180,77 +167,56 @@
         </div>
     </section>
 
-    <div class="main-content">
-        <section class="problem-way-grid">
-            <div class="col">
-                <h2 style="font-family: var(--font-serif); margin-bottom:20px;">The Problem</h2>
-                <p>Today's internet is built on a bad deal. You get free services. In exchange, companies own everything: your photos, your messages, your relationships.</p>
-            </div>
-            <div class="col">
-                <h2 style="font-family: var(--font-serif); margin-bottom:20px;">A Different Way</h2>
-                <p>What if the apps you use couldn't spy on you? We're building the social layer for this internet. Products that feel familiar, built on different foundations.</p>
-            </div>
-        </section>
-        <div style="text-align:center; margin-top:80px;">
-            <h2 style="font-family: var(--font-serif); font-size: 32px;">They took the internet from us. We're taking it back.</h2>
-        </div>
+    <div class="manifesto-section">
+        <p>The early internet was built by people who believed in transparency and freedom. They were right about what technology could enable. What they missed was that values need enforcement to survive.</p>
+        <h2>They took the internet from us. <br> We're taking it back.</h2>
     </div>
 
     <footer>
-        <div>© 2025</div>
-        <div><a href="#" style="color:var(--grey-400); text-decoration:none;">Support</a></div>
+        <div>© 2026 Polkadot</div>
+        <div class="footer-links">
+            <a href="#" style="text-decoration: none; color: inherit;">Support</a>
+            <a href="#" style="text-decoration: none; color: inherit;">Wiki</a>
+            <a href="#" style="text-decoration: none; color: inherit;">X (Twitter)</a>
+        </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
     <script>
-        // IMPLEMENTAZIONE NOISE CANVAS (METODO THREE.JS)
-        const canvas = document.getElementById('noiseCanvas');
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-        const scene = new THREE.Scene();
-        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-        const geometry = new THREE.PlaneGeometry(2, 2);
-        const material = new THREE.ShaderMaterial({
-            uniforms: {
-                u_time: { value: 0 },
-                u_mouse: { value: new THREE.Vector2(0,0) }
-            },
-            vertexShader: `void main() { gl_Position = vec4(position, 1.0); }`,
-            fragmentShader: `
-                precision highp float;
-                uniform float u_time;
-                uniform vec2 u_mouse;
-                float random(vec2 p) {
-                    return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453);
-                }
-                void main() {
-                    vec2 uv = gl_FragCoord.xy / 512.0;
-                    float n = random(uv + u_time + u_mouse.x * 0.1);
-                    gl_FragColor = vec4(vec3(n), 1.0);
-                }
-            `
-        });
-
-        const mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
+        /* --- GRAIN NOISE CANVAS (METODO ORIGINALE) --- */
+        const canvas = document.getElementById('grainCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
 
         function resize() {
-            renderer.setSize(window.innerWidth, window.innerHeight * 0.8);
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
+
+        function grain() {
+            const imageData = ctx.createImageData(width, height);
+            const data = imageData.data;
+            for (let i = 0; i < data.length; i += 4) {
+                const value = Math.random() * 255;
+                data[i] = data[i + 1] = data[i + 2] = value;
+                data[i + 3] = 20; // Opacità del noise
+            }
+            ctx.putImageData(imageData, 0, 0);
+        }
+
         window.addEventListener('resize', resize);
         resize();
 
-        window.addEventListener('mousemove', (e) => {
-            material.uniforms.u_mouse.value.set(e.clientX / window.innerWidth, e.clientY / window.innerHeight);
-        });
-
-        function animate(time) {
-            material.uniforms.u_time.value = time * 0.005;
-            renderer.render(scene, camera);
-            requestAnimationFrame(animate);
+        function loop() {
+            grain();
+            requestAnimationFrame(loop);
         }
-        requestAnimationFrame(animate);
+        loop();
+
+        // Effetto mouse move per intensità
+        window.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            canvas.style.opacity = 0.2 + (x * 0.2);
+        });
     </script>
 </body>
 </html>
