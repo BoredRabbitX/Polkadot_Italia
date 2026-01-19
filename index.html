@@ -20,9 +20,10 @@
             --navbar-bg: var(--grey-950);
             --section-alt: var(--grey-950);
             
-            /* Noise Settings per Dark Mode */
-            --noise-opacity: 0.6;
+            /* Noise Dark Mode: Bianco su Nero */
+            --noise-opacity: 0.65;
             --noise-blend: screen;
+            --noise-filter: contrast(350%) brightness(150%);
         }
 
         [data-theme="light"] {
@@ -30,11 +31,12 @@
             --text-main: #1C1917;
             --navbar-bg: #FFFFFF;
             --section-alt: #F5F5F4;
-            --grey-50: #57534E;
+            --grey-500: #57534E;
             
-            /* Noise Settings per Light Mode (Invertito) */
-            --noise-opacity: 0.15;
+            /* Noise Light Mode: Nero su Bianco */
+            --noise-opacity: 0.18;
             --noise-blend: multiply;
+            --noise-filter: contrast(250%) brightness(80%);
         }
 
         * { box-sizing: border-box; transition: background-color 0.3s, color 0.3s; }
@@ -89,7 +91,7 @@
             cursor: pointer;
         }
 
-        /* HERO - OLD TV STATIC NOISE */
+        /* HERO - TV STATIC NOISE IDENTICO */
         .hero {
             position: relative;
             height: 100vh;
@@ -102,32 +104,30 @@
 
         .noise-layer {
             position: absolute;
-            inset: -200%;
+            inset: -250%; /* Sovradimensionato per coprire i movimenti dell'animazione */
             z-index: 1;
             opacity: var(--noise-opacity);
             mix-blend-mode: var(--noise-blend);
             pointer-events: none;
-            /* Texture tipo TV vecchia (grana grossa e irregolare) */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            filter: contrast(300%) brightness(150%);
-            animation: grain-static 0.15s steps(2) infinite;
+            /* Frequenza altissima per granuli finissimi e "TV static" */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='tvNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23tvNoise)'/%3E%3C/svg%3E");
+            filter: var(--noise-filter);
+            animation: tv-flicker 0.12s steps(2) infinite;
         }
 
-        /* Effetto flickering tipico della TV */
-        @keyframes grain-static {
-            0% { transform: translate(0,0); }
-            10% { transform: translate(-1%, -1%); }
-            20% { transform: translate(2%, 1%); }
-            40% { transform: translate(-2%, 2%); }
-            60% { transform: translate(1%, -2%); }
-            80% { transform: translate(-1%, 1%); }
-            100% { transform: translate(1%, 2%); }
+        @keyframes tv-flicker {
+            0% { transform: translate(0, 0); }
+            20% { transform: translate(-2%, 1%); }
+            40% { transform: translate(1%, -2%); }
+            60% { transform: translate(-1%, 2%); }
+            80% { transform: translate(2%, -1%); }
+            100% { transform: translate(0, 2%); }
         }
 
         .spotlight {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), transparent 0%, rgba(0,0,0,0.92) 35%, var(--bg-color) 65%);
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), transparent 0%, rgba(0,0,0,0.96) 30%, var(--bg-color) 60%);
             z-index: 2;
             pointer-events: none;
         }
