@@ -3,66 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polkadot</title>
+    <title>Polkadot | Software for Sovereignty</title>
+    <link rel="icon" type="image/png" href="https://github.com/Tomen/polkadot-second-age-brand-kit/blob/main/icon/png/256x256/polkadot-icon__cool-gray-on-near-black.png?raw=true">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg: #000;
-            --text: #fff;
-            --text-dim: #a1a1a1;
+            --grey-950: #0F0F0F;
+            --grey-400: #A8A29E;
+            --cool-gray: #E5E7EB;
+            --pink-accent: #FF2867;
+            --dm-sans: 'DM Sans', sans-serif;
+            --dm-serif: 'DM Serif Display', serif;
         }
 
         body, html {
             margin: 0;
             padding: 0;
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            overflow-x: hidden;
+            background-color: var(--grey-950);
+            color: var(--cool-gray);
+            font-family: var(--dm-sans);
+            scroll-behavior: smooth;
         }
 
-        /* --- NAVBAR (IMMAGINE 3) --- */
+        /* --- NAVBAR FISSA E PULITA (SENZA NOISE) --- */
         nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
+            height: 80px;
+            background-color: var(--grey-950); /* Fisso e solido */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 0 40px;
             box-sizing: border-box;
-            z-index: 100;
+            z-index: 1000;
         }
 
-        .nav-logo {
+        .nav-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo-img {
+            width: 32px;
+            height: 32px;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 32px;
         }
 
         .nav-links a {
-            color: var(--text);
+            color: var(--cool-gray);
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 500;
             opacity: 0.8;
+            transition: opacity 0.2s;
         }
+
+        .nav-links a:hover { opacity: 1; }
 
         .btn-sign {
-            background: #222;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 13px;
+            background: #292524;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
         }
 
-        /* --- HERO ZONE (IMMAGINE 1 E 3) --- */
+        /* --- HERO ZONE CON NOISE SABBIOSO --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -72,6 +93,8 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            margin-top: 0;
+            background-color: var(--grey-950);
         }
 
         .noise-overlay {
@@ -80,35 +103,37 @@
             width: 200%; height: 200%;
             pointer-events: none;
             z-index: 1;
-            opacity: 0.22;
+            opacity: 0.25; /* Grana visibile come da immagine */
         }
+
         .noise-svg { width: 100%; height: 100%; }
 
         .title {
-            font-family: "Georgia", serif;
-            font-size: 110px;
-            font-weight: 700;
+            font-family: var(--dm-serif);
+            font-size: clamp(80px, 12vw, 140px);
+            font-weight: 400;
             margin: 0;
-            letter-spacing: -3px;
+            letter-spacing: -2px;
             position: relative;
             z-index: 2;
+            color: #FFFFFF;
         }
 
         .subtitle-container {
-            height: 30px;
-            margin-top: 15px;
+            height: 40px;
+            margin-top: 20px;
             position: relative;
             width: 100%;
             z-index: 2;
         }
 
         .subtitle {
-            font-size: 24px;
+            font-size: clamp(18px, 2.5vw, 28px);
             font-weight: 300;
             opacity: 0;
             position: absolute;
             width: 100%; left: 0;
-            color: var(--text-dim);
+            color: var(--grey-400);
             animation: fadeTransition 16s infinite;
         }
 
@@ -118,97 +143,106 @@
         .subtitle:nth-child(4) { animation-delay: 12s; }
 
         @keyframes fadeTransition {
-            0% { opacity: 0; transform: translateY(5px); }
+            0% { opacity: 0; transform: translateY(10px); }
             5% { opacity: 1; transform: translateY(0); }
             20% { opacity: 1; transform: translateY(0); }
-            25% { opacity: 0; transform: translateY(-5px); }
+            25% { opacity: 0; transform: translateY(-10px); }
             100% { opacity: 0; }
         }
 
-        /* --- CORPO CENTRALE (IMMAGINE 2) --- */
-        .content-body {
-            background-color: var(--bg);
-            padding-bottom: 100px;
+        /* --- CONTENT SECTIONS --- */
+        .content-wrap {
+            position: relative;
+            z-index: 10;
+            background-color: var(--grey-950);
         }
 
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            max-width: 1100px;
+            gap: 60px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 40px;
-            gap: 40px;
+            padding: 120px 40px;
         }
 
-        .feature-card h2 { font-family: "Georgia", serif; font-size: 26px; margin-bottom: 15px; }
-        .feature-card p { color: var(--text-dim); font-size: 15px; line-height: 1.5; }
-
-        .center-heading {
-            text-align: center;
-            max-width: 800px;
-            margin: 100px auto;
-            padding: 0 40px;
+        .feature-card h2 {
+            font-family: var(--dm-serif);
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #FFF;
         }
 
-        .center-heading h1 { font-family: "Georgia", serif; font-size: 52px; margin-bottom: 20px; }
-        .center-heading p { color: var(--text-dim); font-size: 20px; }
-
-        .problem-solution {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            max-width: 1100px;
-            margin: 0 auto;
-            gap: 80px;
-            padding: 60px 40px;
-        }
-
-        .problem-solution h2 { font-family: "Georgia", serif; font-size: 24px; margin-bottom: 20px; }
-        .problem-solution p { color: var(--text-dim); font-size: 15px; margin-bottom: 20px; }
-
-        .manifesto-text {
-            text-align: center;
-            max-width: 850px;
-            margin: 100px auto;
-            padding: 0 40px;
-            font-size: 18px;
-            color: var(--text-dim);
+        .feature-card p {
+            color: var(--grey-400);
+            font-size: 17px;
             line-height: 1.6;
         }
 
-        .take-back {
+        .manifesto-section {
             text-align: center;
-            font-family: "Georgia", serif;
-            font-size: 24px;
-            margin-top: 40px;
-            color: #fff;
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 0 40px;
         }
 
-        /* --- FOOTER (IMMAGINE 2) --- */
+        .manifesto-section h1 {
+            font-family: var(--dm-serif);
+            font-size: clamp(40px, 6vw, 64px);
+            margin-bottom: 40px;
+            color: #FFF;
+        }
+
+        .manifesto-section p {
+            font-size: 22px;
+            color: var(--grey-400);
+            line-height: 1.6;
+        }
+
+        .problem-way-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            max-width: 1100px;
+            margin: 120px auto;
+            padding: 0 40px;
+        }
+
+        .problem-way-grid h2 { font-family: var(--dm-serif); font-size: 28px; margin-bottom: 25px; }
+        .problem-way-grid p { color: var(--grey-400); font-size: 16px; margin-bottom: 20px; }
+
+        /* --- FOOTER --- */
         footer {
+            padding: 150px 40px;
             text-align: center;
-            padding: 100px 40px;
+            border-top: 1px solid #292524;
         }
 
-        footer h3 { font-family: "Georgia", serif; font-size: 28px; margin-bottom: 10px; }
-        footer p { color: var(--text-dim); margin-bottom: 30px; }
+        footer h3 { font-family: var(--dm-serif); font-size: 36px; margin-bottom: 40px; }
 
-        .x-button {
-            background: #fff;
+        .x-btn {
+            background-color: #FFFFFF;
             color: #000;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.2s;
         }
+        .x-btn:hover { transform: scale(1.05); }
+
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-logo">Polkadot</div>
+        <div class="nav-left">
+            <img src="https://github.com/Tomen/polkadot-second-age-brand-kit/blob/main/icon/png/256x256/polkadot-icon__cool-gray-on-near-black.png?raw=true" alt="Logo" class="nav-logo-img">
+            Polkadot
+        </div>
         <div class="nav-links">
             <a href="#">Philosophy</a>
             <a href="#">Tech</a>
@@ -230,6 +264,7 @@
                 <rect width="100%" height="100%" filter="url(#noiseFilter)"></rect>
             </svg>
         </div>
+
         <h1 class="title">Polkadot</h1>
         <div class="subtitle-container">
             <div class="subtitle">Crypto beyond currency.</div>
@@ -239,7 +274,7 @@
         </div>
     </section>
 
-    <div class="content-body">
+    <div class="content-wrap">
         <section class="feature-grid">
             <div class="feature-card">
                 <h2>Honest by design</h2>
@@ -255,33 +290,28 @@
             </div>
         </section>
 
-        <section class="center-heading">
+        <section class="manifesto-section">
             <h1>A new age of internet-enabled society</h1>
             <p>The way we connect, do business, and organize is changing. Polkadot is the social tooling to make it work.</p>
         </section>
 
-        <section class="problem-solution">
+        <section class="problem-way-grid">
             <div class="col">
                 <h2>The Problem</h2>
-                <p>Today's internet is built on a bad deal. You get free services. In exchange, companies own everything: your photos, your messages, your relationships. They watch what you do. They decide what you see. They can lock you out whenever they want.</p>
+                <p>Today's internet is built on a bad deal. You get free services. In exchange, companies own everything: your photos, your messages, your relationships.</p>
                 <p>You don't have an account. You have permission to use someone else's platform, on their terms, until they decide otherwise.</p>
             </div>
             <div class="col">
                 <h2>A Different Way</h2>
-                <p>What if the apps you use couldn't spy on you? Not because they promised not to, but because it is not within their ability. What if your stuff couldn't be frozen, your data couldn't be sold, and your apps couldn't disappear?</p>
+                <p>What if the apps you use couldn't spy on you? Not because they promised not to, but because it is not within their ability.</p>
                 <p>We're building the social layer for this different kind of internet. Products that feel familiar, built on different foundations. That's Polkadot.</p>
             </div>
         </section>
 
-        <section class="manifesto-text">
-            <p>The early internet was built by people who believed in transparency and freedom. They were right about what technology could enable. What they missed was that values need enforcement to survive. On Polkadot, transparency, user control, and unchangeable rules are properties of the platform itself.</p>
-            <div class="take-back">They took the internet from us. We're taking it back.</div>
-        </section>
-
         <footer>
-            <h3>Stay Updated</h3>
-            <p>We're just getting started.</p>
-            <a href="#" class="x-button">Follow on X</a>
+            <h3>They took the internet from us. We're taking it back.</h3>
+            <p>Stay Updated. We're just getting started.</p>
+            <a href="#" class="x-btn">Follow on X</a>
         </footer>
     </div>
 
