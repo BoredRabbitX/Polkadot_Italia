@@ -69,25 +69,24 @@
         }
         
         .hero-title {
-            font-family: var(--font-serif); font-size: clamp(45px, 7vw, 80px);
-            line-height: 1.1; letter-spacing: -0.02em; color: #FFF;
-            margin: 0; max-width: 800px;
+            font-family: var(--font-serif); font-size: clamp(65px, 9vw, 100px);
+            line-height: 1; letter-spacing: -0.04em; color: #FFF;
+            margin: 0;
         }
 
         /* SOVRAPPOSIZIONE TESTI HERO */
         .subtitle-wrapper { 
-            height: 40px; margin-top: 25px; 
-            position: relative; width: 80vw;
+            height: 30px; margin-top: 15px; 
+            position: relative; width: 100vw;
             display: flex; justify-content: center;
         }
         
         .subtitle-item {
             position: absolute; 
-            font-size: clamp(16px, 2vw, 20px); font-weight: 300;
+            font-size: clamp(14px, 1.8vw, 17px); font-weight: 300;
             color: var(--grey-400); opacity: 0;
-            white-space: normal;
-            transition: opacity 1.5s ease-in-out;
-            max-width: 700px;
+            white-space: nowrap;
+            transition: opacity 1.2s ease-in-out;
         }
 
         .subtitle-item.active {
@@ -110,37 +109,31 @@
         /* --- CONTENT STYLE --- */
         .features-section { background: #141211; padding: 100px 5%; }
         .grid-container {
-            max-width: 1100px; margin: 0 auto;
+            max-width: 1000px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 60px;
         }
         .feature-card h2 { font-family: var(--font-serif); font-size: 24px; margin-bottom: 14px; color: #FFF; }
-        .feature-card p { font-size: 14px; line-height: 1.6; color: var(--grey-400); }
+        .feature-card p { font-size: 13px; line-height: 1.6; color: var(--grey-400); }
 
-        .main-content { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
-        .section-title { font-family: var(--font-serif); font-size: clamp(28px, 4vw, 42px); text-align: center; margin-bottom: 80px; color: #FFF; }
+        .main-content { padding: 100px 5%; max-width: 1000px; margin: 0 auto; }
+        .section-title { font-family: var(--font-serif); font-size: clamp(24px, 3.5vw, 38px); text-align: center; margin-bottom: 70px; color: #FFF; }
         
         .columns-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 80px; margin-bottom: 100px;
+            gap: 70px; margin-bottom: 90px;
         }
-        .col h2 { font-family: var(--font-serif); font-size: 22px; margin-bottom: 20px; color: #FFF; }
-        .col p { font-size: 15px; line-height: 1.7; color: var(--grey-400); margin-bottom: 20px; }
+        .col h2 { font-family: var(--font-serif); font-size: 20px; margin-bottom: 18px; color: #FFF; }
+        .col p { font-size: 14px; line-height: 1.7; color: var(--grey-400); margin-bottom: 16px; }
 
-        .manifesto-box { text-align: center; max-width: 800px; margin: 100px auto; }
-        .manifesto-box p { font-size: 17px; line-height: 1.8; color: var(--cool-gray); margin-bottom: 40px; }
-        .manifesto-box h2 { font-family: var(--font-serif); font-size: 32px; color: #FFF; line-height: 1.3; }
-
-        .cta-footer { text-align: center; margin-bottom: 100px; }
-        .btn-x { 
-            background: #FFF; color: #000; padding: 14px 32px; border-radius: 50px; 
-            text-decoration: none; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 8px;
-        }
+        .manifesto-box { text-align: center; max-width: 750px; margin: 0 auto 70px; }
+        .manifesto-box p { font-size: 15px; line-height: 1.8; color: var(--cool-gray); margin-bottom: 25px; }
+        .manifesto-box h2 { font-family: var(--font-serif); font-size: 26px; color: #FFF; }
 
         footer {
             padding: 40px 5%; border-top: 1px solid var(--grey-900);
             display: flex; justify-content: space-between; align-items: center;
-            font-size: 12px; color: var(--grey-400);
+            font-size: 11px; color: var(--grey-400);
         }
     </style>
 </head>
@@ -159,10 +152,13 @@
     <section class="hero" id="hero">
         <canvas id="noiseCanvas"></canvas>
         <div class="hero-content">
-            <h1 class="hero-title">A new age of internet-enabled society</h1>
+            <h1 class="hero-title">Polkadot</h1>
             <div class="subtitle-wrapper">
-                <div class="subtitle-item active">The way we connect, do business, and organize is changing.</div>
-                <div class="subtitle-item">Polkadot is the social tooling to make it work.</div>
+                <div class="subtitle-item active">Apps for agency.</div>
+                <div class="subtitle-item">Crypto beyond currency.</div>
+                <div class="subtitle-item">Products for people.</div>
+                <div class="subtitle-item">Software or sovereignty.</div>
+                <div class="subtitle-item">Protocols for prosperity.</div>
             </div>
         </div>
     </section>
@@ -185,6 +181,7 @@
     </section>
 
     <div class="main-content">
+        <h1 class="section-title fade-section">A new age of internet-enabled society</h1>
         <div class="columns-grid fade-section">
             <div class="col">
                 <h2>The Problem</h2>
@@ -201,13 +198,7 @@
 
         <div class="manifesto-box fade-section">
             <p>The early internet was built by people who believed in transparency and freedom. They were right about what technology could enable. What they missed was that values need enforcement to survive. On Polkadot, transparency, user control, and unchangeable rules are properties of the platform itself.</p>
-            <h2>They took the internet from us.<br>We're taking it back.</h2>
-        </div>
-
-        <div class="cta-footer fade-section">
-            <h3 style="font-family: var(--font-serif); font-size: 24px; margin-bottom: 10px;">Stay Updated</h3>
-            <p style="color: var(--grey-400); margin-bottom: 30px; font-size: 14px;">We're just getting started.</p>
-            <a href="#" class="btn-x">Follow on X</a>
+            <h2>They took the internet from us. <br>We're taking it back.</h2>
         </div>
     </div>
 
@@ -222,7 +213,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // NOISE CORE (Invariato)
         const canvas = document.getElementById('noiseCanvas');
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
         const scene = new THREE.Scene();
@@ -268,14 +258,14 @@
         }
         requestAnimationFrame(animate);
 
-        // --- SISTEMAZIONE HERO TEXT (FADE OVERLAP) ---
+        // --- GESTIONE FADE SOVRAPPOSTO HERO ---
         const subs = document.querySelectorAll('.subtitle-item');
         let currentSub = 0;
         setInterval(() => {
             subs[currentSub].classList.remove('active');
             currentSub = (currentSub + 1) % subs.length;
             subs[currentSub].classList.add('active');
-        }, 4500);
+        }, 4000);
 
         // FADE IN ON SCROLL
         const observer = new IntersectionObserver((entries) => {
