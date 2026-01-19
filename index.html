@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polkadot | Crypto beyond currency</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --grey-50: #FAFAF9;
+            --grey-200: #E7E5E4;
+            --grey-500: #78716C;
+            --grey-800: #292524;
+            --grey-900: #1C1917;
+            --grey-950: #0F0F0F;
+            --pink-accent: #FF2867;
+            --cool-gray: #E5E7EB;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--grey-950); /* Dark mode di default come da screenshot */
+            color: var(--cool-gray);
+            font-family: 'DM Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigazione */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: var(--cool-gray);
+            text-decoration: none;
+            margin-left: 24px;
+            opacity: 0.8;
+        }
+
+        .btn-sign-in {
+            border: 1px solid var(--grey-500);
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1C1917 0%, #0F0F0F 100%);
+            /* Effetto grana sottile simulato */
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); 
+            border-bottom: 1px solid var(--grey-800);
+        }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 120px;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--grey-400);
+            margin-top: 10px;
+        }
+
+        /* Sezione Two-Column Features */
+        .features-intro {
+            background-color: #161412; /* Leggermente più chiaro del fondo */
+            padding: 100px 15%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            border-bottom: 1px solid var(--grey-900);
+        }
+
+        .feature-item h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .feature-item p {
+            color: var(--grey-500);
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* Sezione Main Content (The Problem) */
+        .content-section {
+            padding: 120px 15%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .main-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 56px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-subtitle {
+            text-align: center;
+            color: var(--grey-500);
+            font-size: 20px;
+            margin-bottom: 80px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+        }
+
+        .column h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .column p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--grey-400);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--grey-500);
+            border-top: 1px solid var(--grey-900);
+        }
+
+        /* Accent (utilizzato per link o hover come da kit) */
+        .accent-text { color: var(--pink-accent); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <svg width="100" height="30" viewBox="0 0 100 30" fill="currentColor"><text y="20" font-family="DM Sans" font-weight="700">Polkadot</text></svg>
+        </div>
+        <div class="nav-links">
+            <a href="#">Philosophy</a>
+            <a href="#">Tech</a>
+            <a href="#">Platform</a>
+            <a href="#">Ecosystem</a>
+            <a href="#" class="btn-sign-in">Sign in</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Polkadot</h1>
+        <p>Crypto beyond currency.</p>
+    </section>
+
+    <section class="features-intro">
+        <div class="feature-item">
+            <h2>Honest by design</h2>
+            <p>The rules are in the product, not buried in fine print. We couldn't change that even if we wanted to.</p>
+        </div>
+        <div class="feature-item">
+            <h2>You own it</h2>
+            <p>No company can seize or freeze your stuff, snoop on you, or shut you out. It's yours.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="main-title">A new age of internet-enabled society</h2>
+        <p class="main-subtitle">The way we connect, do business, and organize is changing. Polkadot is the social tooling to make it work.</p>
+
+        <div class="comparison-grid">
+            <div class="column">
+                <h3>The Problem</h3>
+                <p>Today's internet is built on a bad deal. You get free services. In exchange, companies own everything: your photos, your messages, your relationships.</p>
+                <p>You don't have an account. You have permission to use someone else's platform, until they decide otherwise.</p>
+            </div>
+            <div class="column">
+                <h3>A Different Way</h3>
+                <p>What if the apps you use couldn't spy on you? Not because they promised not to, but because it is not within their ability.</p>
+                <p>We're building the social layer for this different kind of internet. Products that feel familiar, built on different foundations. That's Polkadot.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>© 2026 Polkadot Second Age Concept</div>
+        <div class="nav-links">
+            <a href="#">Support</a>
+            <a href="#">Wiki</a>
+            <a href="#">About</a>
+            <a href="#">X</a>
+            <a href="#">Github</a>
+        </div>
+    </footer>
+
+</body>
+</html>
