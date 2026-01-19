@@ -46,13 +46,13 @@
         }
         .nav-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-serif); font-size: 18px; color: #FFF; text-decoration: none; }
         .nav-links { display: flex; gap: 28px; align-items: center; }
-        .nav-links a { font-size: 12px; text-decoration: none; color: var(--cool-gray); opacity: 0.65; }
-        .btn-sign { background: var(--grey-800); padding: 6px 14px; border-radius: 6px; font-weight: 600; font-size: 12px; }
+        .nav-links a { font-size: 11px; text-decoration: none; color: var(--cool-gray); opacity: 0.6; }
+        .btn-sign { background: var(--grey-800); padding: 6px 14px; border-radius: 6px; font-weight: 600; font-size: 11px; }
 
-        /* HERO */
+        /* --- HERO (100vh) --- */
         .hero {
             position: relative;
-            width: 100vw; height: 85vh;
+            width: 100vw; height: 100vh; /* Più alta, copre tutto il viewport */
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: var(--grey-950); overflow: hidden;
         }
@@ -63,32 +63,45 @@
             z-index: 1; pointer-events: none;
         }
 
-        .hero-content { position: relative; z-index: 2; text-align: center; pointer-events: none; }
-        .hero-title {
-            font-family: var(--font-serif); font-size: clamp(70px, 10vw, 110px);
-            line-height: 0.9; letter-spacing: -0.04em; color: #FFF;
+        .hero-content { 
+            position: relative; z-index: 2; text-align: center; pointer-events: none; 
+            display: flex; flex-direction: column; align-items: center;
         }
-        .subtitle-wrapper { height: 36px; margin-top: 20px; position: relative; }
+        
+        .hero-title {
+            font-family: var(--font-serif); font-size: clamp(65px, 9vw, 100px);
+            line-height: 1; letter-spacing: -0.04em; color: #FFF;
+            margin: 0;
+        }
+
+        .subtitle-wrapper { 
+            height: 30px; margin-top: 15px; 
+            position: relative; width: 100vw; /* Evita sputtanamenti di layout laterale */
+            display: flex; justify-content: center;
+        }
+        
         .subtitle-item {
-            position: absolute; width: 100%; left: 0;
-            font-size: clamp(16px, 2vw, 19px); font-weight: 300;
+            position: absolute; 
+            font-size: clamp(14px, 1.8vw, 17px); font-weight: 300;
             color: var(--grey-400); opacity: 0;
+            white-space: nowrap;
             animation: slideText 16s infinite;
         }
 
         @keyframes slideText {
-            0% { opacity: 0; transform: translateY(10px); }
+            0% { opacity: 0; transform: translateY(8px); }
             5% { opacity: 1; transform: translateY(0); }
             20% { opacity: 1; transform: translateY(0); }
-            25% { opacity: 0; transform: translateY(-10px); }
+            25% { opacity: 0; transform: translateY(-8px); }
             100% { opacity: 0; }
         }
 
-        /* --- EFFETTO FADE-IN PER CONTENUTI SOTTO HERO --- */
+        /* --- FADE-IN SCROLL LOGIC --- */
         .fade-section {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+            transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
         }
 
         .fade-section.visible {
@@ -96,41 +109,34 @@
             transform: translateY(0);
         }
 
-        /* SEZIONI CONTENUTO (FONT RIDOTTI) */
+        /* --- CONTENT STYLE (FONT RIDOTTI) --- */
         .features-section { background: #141211; padding: 100px 5%; }
         .grid-container {
-            max-width: 1100px; margin: 0 auto;
+            max-width: 1000px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 70px;
+            gap: 60px;
         }
-        .feature-card h2 { font-family: var(--font-serif); font-size: 26px; margin-bottom: 16px; color: #FFF; }
-        .feature-card p { font-size: 14px; line-height: 1.6; color: var(--grey-400); }
+        .feature-card h2 { font-family: var(--font-serif); font-size: 24px; margin-bottom: 14px; color: #FFF; }
+        .feature-card p { font-size: 13px; line-height: 1.6; color: var(--grey-400); }
 
-        .main-content { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
-        .section-title { font-family: var(--font-serif); font-size: clamp(28px, 4vw, 44px); text-align: center; margin-bottom: 70px; color: #FFF; }
+        .main-content { padding: 100px 5%; max-width: 1000px; margin: 0 auto; }
+        .section-title { font-family: var(--font-serif); font-size: clamp(24px, 3.5vw, 38px); text-align: center; margin-bottom: 70px; color: #FFF; }
         
         .columns-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 80px; margin-bottom: 100px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 70px; margin-bottom: 90px;
         }
-        .col h2 { font-family: var(--font-serif); font-size: 22px; margin-bottom: 20px; color: #FFF; }
-        .col p { font-size: 15px; line-height: 1.7; color: var(--grey-400); margin-bottom: 18px; }
+        .col h2 { font-family: var(--font-serif); font-size: 20px; margin-bottom: 18px; color: #FFF; }
+        .col p { font-size: 14px; line-height: 1.7; color: var(--grey-400); margin-bottom: 16px; }
 
-        .manifesto-box { text-align: center; max-width: 800px; margin: 0 auto 80px; }
-        .manifesto-box p { font-size: 16px; line-height: 1.8; color: var(--cool-gray); margin-bottom: 30px; }
-        .manifesto-box h2 { font-family: var(--font-serif); font-size: 28px; color: #FFF; }
-
-        .stay-updated { text-align: center; margin-bottom: 80px; }
-        .x-btn {
-            background-color: var(--cool-gray); color: var(--grey-950);
-            padding: 12px 28px; border-radius: 100px; text-decoration: none;
-            font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
-        }
+        .manifesto-box { text-align: center; max-width: 750px; margin: 0 auto 70px; }
+        .manifesto-box p { font-size: 15px; line-height: 1.8; color: var(--cool-gray); margin-bottom: 25px; }
+        .manifesto-box h2 { font-family: var(--font-serif); font-size: 26px; color: #FFF; }
 
         footer {
             padding: 40px 5%; border-top: 1px solid var(--grey-900);
             display: flex; justify-content: space-between; align-items: center;
-            font-size: 12px; color: var(--grey-400);
+            font-size: 11px; color: var(--grey-400);
         }
     </style>
 </head>
@@ -138,7 +144,7 @@
 
     <nav>
         <a href="/" class="nav-logo">
-            <img src="https://github.com/Tomen/polkadot-second-age-brand-kit/blob/main/icon/png/256x256/polkadot-icon__cool-gray-on-near-black.png?raw=true" width="20" height="20" alt="Polkadot">
+            <img src="https://github.com/Tomen/polkadot-second-age-brand-kit/blob/main/icon/png/256x256/polkadot-icon__cool-gray-on-near-black.png?raw=true" width="18" height="18" alt="Polkadot">
             Polkadot
         </a>
         <div class="nav-links">
@@ -182,22 +188,16 @@
             <div class="col">
                 <h2>The Problem</h2>
                 <p>Today's internet is built on a bad deal. You get free services. In exchange, companies own everything: your photos, your messages, your relationships.</p>
-                <p>You don't have an account. You have permission to use someone else's platform, on their terms, until they decide otherwise.</p>
             </div>
             <div class="col">
                 <h2>A Different Way</h2>
                 <p>What if the apps you use couldn't spy on you? Not because they promised not to, but because it is not within their ability.</p>
-                <p>We're building the social layer for this different kind of internet. Products that feel familiar, built on different foundations. That's Polkadot.</p>
             </div>
         </div>
 
         <div class="manifesto-box fade-section">
             <p>The early internet was built by people who believed in transparency and freedom. Su Polkadot, la trasparenza e il controllo dell'utente sono proprietà della piattaforma stessa.</p>
             <h2>They took the internet from us. <br>We're taking it back.</h2>
-        </div>
-
-        <div class="stay-updated fade-section">
-            <a href="#" class="x-btn">Follow on X</a>
         </div>
     </div>
 
@@ -211,7 +211,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // NOISE & OMBRA
+        // NOISE CORE
         const canvas = document.getElementById('noiseCanvas');
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
         const scene = new THREE.Scene();
@@ -232,11 +232,11 @@
                 float random(vec2 p) { return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
                 void main() {
                     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-                    float n = random(uv + fract(u_time * 0.2)); 
-                    n = mix(0.0, 0.15, n);
+                    float n = random(uv + fract(u_time * 0.15)); 
+                    n = mix(0.0, 0.12, n);
                     float dist = distance(uv, vec2(u_mouse.x, 1.0 - u_mouse.y));
-                    float shadow = smoothstep(0.1, 0.7, dist);
-                    vec3 color = vec3(n) - (shadow * 0.12);
+                    float shadow = smoothstep(0.1, 0.8, dist);
+                    vec3 color = vec3(n) - (shadow * 0.15);
                     gl_FragColor = vec4(color, 1.0);
                 }
             `
@@ -262,17 +262,16 @@
         }
         requestAnimationFrame(animate);
 
-        // LOGICA FADE-IN AL SCROLL
-        const observerOptions = { threshold: 0.15 };
+        // FADE IN ON SCROLL
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-section').forEach(section => observer.observe(section));
+        document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
     </script>
 </body>
 </html>
