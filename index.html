@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polkadot</title>
+    <title>Polkadot | Software for Sovereignty</title>
     <link rel="icon" type="image/png" href="https://github.com/Tomen/polkadot-second-age-brand-kit/blob/main/icon/png/256x256/polkadot-icon__cool-gray-on-near-black.png?raw=true">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,13 +30,13 @@
             scroll-behavior: smooth;
         }
 
-        /* --- NAV MODIFICATA --- */
+        /* --- NAV --- */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 64px; /* Altezza ridotta */
+            height: 64px;
             background-color: var(--grey-950);
             display: flex;
             justify-content: space-between;
@@ -50,7 +50,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-family: var(--dm-sans); /* Font corretto */
+            font-family: var(--dm-sans);
             font-weight: 600;
             font-size: 18px;
             letter-spacing: -0.2px;
@@ -80,11 +80,13 @@
             padding: 8px 16px;
             border-radius: 8px;
             font-weight: 600;
+            color: var(--cool-gray);
+            text-decoration: none;
         }
 
-        /* --- HERO MODIFICATA --- */
+        /* --- HERO --- */
         .hero {
-            height: 80vh; /* Altezza più breve */
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -148,11 +150,12 @@
             100% { opacity: 0; }
         }
 
-        /* --- SFONDO DIVERSO SOTTO HERO --- */
-        .content-wrap {
+        /* --- SEZIONE SOTTO HERO (FONDO CHIARO) --- */
+        .sub-hero-section {
+            background-color: #1a1715; /* Sfondo come da screenshot */
+            padding: 100px 40px;
             position: relative;
             z-index: 10;
-            background-color: var(--grey-900); /* Colore sfondo cambiato */
         }
 
         .feature-grid {
@@ -161,7 +164,6 @@
             gap: 60px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 100px 40px;
         }
 
         .feature-card h2 {
@@ -177,57 +179,79 @@
             line-height: 1.6;
         }
 
-        /* --- ALTRE SEZIONI --- */
-        .manifesto-section {
+        /* --- SEZIONE MAIN CONTENT (FONDO SCURO) --- */
+        .main-content {
+            background-color: var(--grey-950);
+            padding: 100px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .center-heading {
             text-align: center;
             max-width: 900px;
-            margin: 0 auto;
-            padding: 100px 40px;
+            margin: 0 auto 100px;
         }
 
-        .manifesto-section h1 { font-family: var(--dm-serif); font-size: 56px; margin-bottom: 40px; color: #FFF; }
-        .manifesto-section p { font-size: 22px; color: var(--grey-400); line-height: 1.6; }
+        .center-heading h1 {
+            font-family: var(--dm-serif);
+            font-size: 56px;
+            margin-bottom: 40px;
+            color: #FFF;
+        }
 
-        /* --- FOOTER AGGIUNTO --- */
-        .footer-main {
+        .center-heading p {
+            font-size: 22px;
+            color: var(--grey-400);
+            line-height: 1.6;
+        }
+
+        .problem-way-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            max-width: 1100px;
+            margin: 0 auto 120px;
+        }
+
+        .problem-way-grid h2 { font-family: var(--dm-serif); font-size: 28px; margin-bottom: 25px; color: #FFF; }
+        .problem-way-grid p { color: var(--grey-400); font-size: 16px; margin-bottom: 20px; line-height: 1.6; }
+
+        .manifesto-box {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .manifesto-box p {
+            font-size: 20px;
+            color: var(--cool-gray);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .manifesto-box h2 {
+            font-family: var(--dm-serif);
+            font-size: 32px;
+            color: #FFF;
+        }
+
+        /* --- FOOTER --- */
+        footer {
             background-color: var(--grey-950);
-            padding: 80px 40px 40px;
-            border-top: 1px solid var(--grey-800);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 60px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 80px;
-        }
-
-        .footer-col h4 { color: #FFF; font-size: 14px; margin-bottom: 20px; }
-        .footer-col a { display: block; color: var(--grey-400); text-decoration: none; font-size: 14px; margin-bottom: 12px; }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 40px;
+            padding: 100px 40px;
+            text-align: center;
             border-top: 1px solid #1c1917;
-            display: flex;
-            justify-content: space-between;
-            color: var(--grey-500);
-            font-size: 12px;
         }
+
+        footer h3 { font-family: var(--dm-serif); font-size: 36px; margin-bottom: 10px; color: #FFF; }
+        footer p { color: var(--grey-400); margin-bottom: 40px; font-size: 18px; }
 
         .x-btn {
-            background-color: #FFFFFF;
-            color: #000;
-            padding: 12px 24px;
-            border-radius: 8px;
+            background-color: var(--cool-gray);
+            color: var(--grey-950);
+            padding: 14px 28px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
             display: inline-flex;
@@ -273,8 +297,8 @@
         </div>
     </section>
 
-    <div class="content-wrap">
-        <section class="feature-grid">
+    <section class="sub-hero-section">
+        <div class="feature-grid">
             <div class="feature-card">
                 <h2>Honest by design</h2>
                 <p>The rules are in the product, not buried in fine print. We couldn't change that even if we wanted to.</p>
@@ -287,40 +311,38 @@
                 <h2>Built for humans</h2>
                 <p>Everything you expect from modern apps. Nothing you have to compromise on.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="manifesto-section">
+    <div class="main-content">
+        <section class="center-heading">
             <h1>A new age of internet-enabled society</h1>
             <p>The way we connect, do business, and organize is changing. Polkadot is the social tooling to make it work.</p>
         </section>
+
+        <section class="problem-way-grid">
+            <div class="col">
+                <h2>The Problem</h2>
+                <p>Today's internet is built on a bad deal. You get free services. In exchange, companies own everything: your photos, your messages, your relationships. They watch what you do. They decide what you see. They can lock you out whenever they want.</p>
+                <p>You don't have an account. You have permission to use someone else's platform, on their terms, until they decide otherwise.</p>
+            </div>
+            <div class="col">
+                <h2>A Different Way</h2>
+                <p>What if the apps you use couldn't spy on you? Not because they promised not to, but because it is not within their ability. What if your stuff couldn't be frozen, your data couldn't be sold, and your apps couldn't disappear?</p>
+                <p>We're building the social layer for this different kind of internet. How you prove you're real without revealing who you are. How your relationships aren't locked inside one app. How your history follows you when you want it to. Products that feel familiar, built on different foundations. That's Polkadot.</p>
+            </div>
+        </section>
+
+        <div class="manifesto-box">
+            <p>The early internet was built by people who believed in transparency and freedom. They were right about what technology could enable. What they missed was that values need enforcement to survive. On Polkadot, transparency, user control, and unchangeable rules are properties of the platform itself.</p>
+            <h2>They took the internet from us. We're taking it back.</h2>
+        </div>
     </div>
 
-    <footer class="footer-main">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3 style="font-family: var(--dm-serif); font-size: 24px; margin-bottom: 10px;">Stay Updated</h3>
-                <p style="color: var(--grey-400); margin-bottom: 25px;">We're just getting started.</p>
-                <a href="#" class="x-btn">Follow on X</a>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4>General</h4>
-                    <a href="#">About</a>
-                    <a href="#">Telemetry</a>
-                    <a href="#">Jobs</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Technology</h4>
-                    <a href="#">Whitepaper</a>
-                    <a href="#">Light paper</a>
-                    <a href="#">Wiki</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div>© 2026 Polkadot Network. All rights reserved.</div>
-            <div>Privacy Policy · Cookie Policy</div>
-        </div>
+    <footer>
+        <h3>Stay Updated</h3>
+        <p>We're just getting started.</p>
+        <a href="#" class="x-btn">Follow on X</a>
     </footer>
 
 </body>
