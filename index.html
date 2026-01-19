@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polkadot</title>
+    <title>Polkadot | Software for Sovereignty</title>
     <link rel="icon" type="image/png" href="https://github.com/Tomen/polkadot-second-age-brand-kit/blob/main/icon/png/256x256/polkadot-icon__cool-gray-on-near-black.png?raw=true">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +28,8 @@
             color: var(--cool-gray);
             font-family: var(--dm-sans);
             scroll-behavior: smooth;
-            font-size: 14px; /* Global font slightly smaller */
+            font-size: 14px;
+            overflow-x: hidden; /* Evita scroll laterale indesiderato */
         }
 
         /* --- NAV --- */
@@ -51,7 +52,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-family: var(--dm-serif); /* Serif font as requested */
+            font-family: var(--dm-serif);
             font-weight: 400;
             font-size: 20px;
         }
@@ -73,13 +74,13 @@
             padding: 8px 16px;
             border-radius: 8px;
             font-weight: 600;
-            transition: 0.3s;
+            color: var(--cool-gray);
+            text-decoration: none;
         }
-        .btn-sign:hover { background: #3a3533; }
 
-        /* --- HERO FULLWIDTH (NO MARGINS) --- */
+        /* --- HERO FULLWIDTH (EDGE TO EDGE) --- */
         .hero {
-            width: 100%;
+            width: 100%; /* Occupa tutto lo spazio disponibile */
             height: 80vh;
             display: flex;
             flex-direction: column;
@@ -89,9 +90,10 @@
             position: relative;
             overflow: hidden;
             background-color: var(--grey-950);
+            margin: 0; /* Rimosso ogni margine */
+            padding: 0; /* Rimosso ogni padding */
         }
 
-        /* Noise effect with hover reaction */
         .noise-overlay {
             position: absolute;
             top: -50%; left: -50%;
@@ -103,7 +105,7 @@
         }
 
         .hero:hover .noise-overlay {
-            opacity: 0.35; /* Hover effect */
+            opacity: 0.35;
         }
 
         .noise-svg { width: 100%; height: 100%; }
@@ -150,7 +152,7 @@
             100% { opacity: 0; }
         }
 
-        /* --- SUB-HERO SECTION (#1a1715) --- */
+        /* --- SEZIONI CONTENUTO (RESTANO CON MARGINI) --- */
         .sub-hero-section {
             background-color: #1a1715;
             padding: 100px 40px;
@@ -169,7 +171,6 @@
         .feature-card h2 { font-family: var(--dm-serif); font-size: 28px; margin-bottom: 20px; color: #FFF; }
         .feature-card p { color: var(--grey-400); font-size: 15px; line-height: 1.6; }
 
-        /* --- MAIN CONTENT (#0F0F0F) --- */
         .main-content {
             background-color: var(--grey-950);
             padding: 100px 40px;
@@ -195,7 +196,6 @@
         .manifesto-box p { font-size: 18px; color: var(--cool-gray); line-height: 1.8; margin-bottom: 40px; }
         .manifesto-box h2 { font-family: var(--dm-serif); font-size: 30px; color: #FFF; }
 
-        /* --- STAY UPDATED --- */
         .stay-updated { text-align: center; padding: 100px 40px; background: var(--grey-950); }
         .x-btn {
             background-color: var(--cool-gray);
@@ -211,7 +211,7 @@
         }
         .x-btn:hover { background: #FFF; transform: scale(1.05); }
 
-        /* --- FOOTER (EXACTLY AS IMAGE) --- */
+        /* --- FOOTER --- */
         footer {
             background-color: #12100e;
             padding: 40px 60px;
