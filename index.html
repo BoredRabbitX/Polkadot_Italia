@@ -134,6 +134,29 @@
             display: flex; justify-content: space-between; align-items: center;
             font-size: 11px; color: var(--grey-400);
         }
+
+        /* --- MODAL INFO STYLE --- */
+        .modal {
+            display: none;
+            position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background-color: var(--grey-950);
+            margin: 10% auto; padding: 40px;
+            border: 1px solid var(--grey-800);
+            width: 80%; max-width: 600px;
+            color: var(--grey-400); font-size: 13px; line-height: 1.6;
+            position: relative;
+        }
+        .modal-content h3 { font-family: var(--font-serif); color: #FFF; margin-bottom: 20px; font-size: 20px; }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px;
+            color: #FFF; font-size: 24px; cursor: pointer;
+        }
+        .modal-content p { margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -144,7 +167,7 @@
             Polkadot Italia
         </a>
         <div class="nav-links">
-            <a href="https://polkadot.com/philosophy">Filosofia</a><a href="https://polkadot.com/tech">Tecnologia</a><a href="https://polkadot.com/platform">Piattaforma</a><a href="https://polkadot.com/ecosystem">Ecosistema</a><!-- <a href="#" class="btn-sign">Accedi</a> -->
+            <a href="https://polkadot.com/philosophy">Filosofia</a><a href="https://polkadot.com/tech">Tecnologia</a><a href="https://polkadot.com/platform">Piattaforma</a><a href="https://polkadot.com/ecosystem">Ecosistema</a>
         </div>
     </nav>
 
@@ -210,12 +233,27 @@
         <div style="display: flex; gap: 20px;">
             <a href="https://support.polkadot.network/" style="text-decoration:none; color:inherit;">Supporto</a>
             <a href="https://wiki.polkadot.com/" style="text-decoration:none; color:inherit;">Wiki</a>
-            <a href="#" style="text-decoration:none; color:inherit;">Info</a>
+            <a href="javascript:void(0)" id="infoBtn" style="text-decoration:none; color:inherit;">Info</a>
         </div>
     </footer>
 
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Informazioni Legali</h3>
+            <p>Questo sito web fornisce contenuti statici e informativi sulla rete Polkadot, ed è fornito "così com'è" e "come disponibile" senza garanzie di alcun tipo, espresse o implicite, incluse ma non limitate a garanzie di commerciabilità, idoneità per uno scopo particolare o non violazione.</p>
+            <p>Non utilizziamo cookie, non raccogliamo dati personali e non forniamo consulenza finanziaria o legale. Alcuni dati tecnici potrebbero essere raccolti automaticamente dal tuo fornitore di servizi internet o dal browser web. Questo esula dal nostro controllo.</p>
+            <p>I collegamenti a siti di terze parti sono solo di riferimento, non implicano approvazione e non abbiamo alcun controllo né ci assumiamo alcuna responsabilità per i contenuti, le politiche sulla privacy o le pratiche di siti web di terze parti.</p>
+            <p>Questo sito web è ospitato tramite GitHub Pages, che registra gli indirizzi IP dei visitatori quando viene visitato un sito Pages (gli IP sono memorizzati per scopi di sicurezza, indipendentemente dal fatto che il visitatore abbia effettuato l'accesso).</p>
+            <p>Questi termini sono regolati dalle leggi di Inghilterra e Galles. Utilizzando questo sito web, accetti tali termini.</p>
+            <p>Per richieste, contattare: <strong>info@parity.io</strong></p>
+            <p style="font-size: 11px; opacity: 0.7;">© 2025 Parity Technologies Limited, registrata in Inghilterra e Galles (n. 09760015) con sede legale presso 1 Sans Walk, Londra, EC1R 0LT.</p>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        // NOISE CANVAS
         const canvas = document.getElementById('noiseCanvas');
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
         const scene = new THREE.Scene();
@@ -261,6 +299,7 @@
         }
         requestAnimationFrame(animate);
 
+        // SUBTITLES HERO
         const subs = document.querySelectorAll('.subtitle-item');
         let currentSub = 0;
         setInterval(() => {
@@ -269,6 +308,7 @@
             subs[currentSub].classList.add('active');
         }, 4000);
 
+        // FADE OBSERVER
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -277,6 +317,17 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
+
+        // MODAL LOGIC
+        const modal = document.getElementById("infoModal");
+        const btn = document.getElementById("infoBtn");
+        const span = document.getElementsByClassName("close-modal")[0];
+
+        btn.onclick = function() { modal.style.display = "block"; }
+        span.onclick = function() { modal.style.display = "none"; }
+        window.onclick = function(event) {
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
     </script>
 </body>
 </html>
