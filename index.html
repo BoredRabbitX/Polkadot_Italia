@@ -28,11 +28,9 @@
             --cool-gray: #E5E7EB;
             --bg-nav: rgba(15, 15, 15, 0.4);
             --text-main: #FFF;
-            --noise-intensity: 0.12;
             --feature-bg: #141211;
         }
 
-        /* MODALITÀ LIGHT */
         body.light-mode {
             --grey-950: #F5F5F4;
             --grey-900: #E7E5E4;
@@ -55,7 +53,6 @@
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        /* --- NAVIGATION --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; height: 56px;
             display: flex; justify-content: space-between; align-items: center;
@@ -70,7 +67,6 @@
             color: var(--text-main); text-decoration: none;
             white-space: nowrap;
         }
-        /* Inverte il logo in light mode */
         body.light-mode .nav-logo img { filter: invert(1); }
 
         .nav-right { display: flex; align-items: center; gap: 20px; }
@@ -78,7 +74,6 @@
         .nav-links a { font-size: 11px; text-decoration: none; color: var(--cool-gray); opacity: 0.6; transition: opacity 0.3s; }
         .nav-links a:hover { opacity: 1; }
 
-        /* TASTO THEME SWITCHER */
         .theme-toggle {
             background: none; border: none; cursor: pointer;
             color: var(--text-main); font-size: 18px;
@@ -90,7 +85,6 @@
         .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 4px; z-index: 1001; }
         .menu-toggle span { width: 20px; height: 2px; background: var(--text-main); transition: 0.3s; }
 
-        /* --- HERO --- */
         .hero {
             position: relative;
             width: 100vw; height: 100vh;
@@ -140,7 +134,6 @@
 
         .fade-section.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- CONTENT --- */
         .features-section { background: var(--feature-bg); padding: 100px 5%; transition: background 0.5s ease; }
         .grid-container {
             max-width: 1000px; margin: 0 auto;
@@ -173,7 +166,6 @@
             font-size: 11px; color: var(--grey-400);
         }
 
-        /* --- MODAL --- */
         .modal {
             display: none;
             position: fixed; z-index: 2000; left: 0; top: 0;
@@ -192,7 +184,6 @@
         .modal-content h3 { font-family: var(--font-serif); color: var(--text-main); margin-bottom: 20px; font-size: 20px; }
         .close-modal { position: absolute; top: 15px; right: 20px; color: var(--text-main); font-size: 24px; cursor: pointer; }
 
-        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
             nav { padding: 0 20px; }
             .nav-logo { font-size: 16px; }
@@ -316,7 +307,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // --- LOGICA DARK/LIGHT MODE ---
         const themeBtn = document.getElementById('theme-btn');
         const themeIcon = document.getElementById('theme-icon');
         let isLightMode = false;
@@ -325,16 +315,13 @@
             isLightMode = !isLightMode;
             document.body.classList.toggle('light-mode');
             themeIcon.innerText = isLightMode ? '☾' : '☀';
-            // Aggiorna uniform dello shader
             material.uniforms.u_lightMode.value = isLightMode ? 1.0 : 0.0;
         };
 
-        // MOBILE MENU
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
         menuToggle.onclick = () => navList.classList.toggle('active');
 
-        // NOISE CANVAS
         const canvas = document.getElementById('noiseCanvas');
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
         const scene = new THREE.Scene();
@@ -345,7 +332,7 @@
                 u_time: { value: 0 },
                 u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
                 u_resolution: { value: new THREE.Vector2() },
-                u_lightMode: { value: 0.0 } // 0 = dark, 1 = light
+                u_lightMode: { value: 0.0 }
             },
             vertexShader: `void main() { gl_Position = vec4(position, 1.0); }`,
             fragmentShader: `
@@ -361,19 +348,19 @@
                     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
                     float n = random(uv + fract(u_time * 0.15)); 
                     
-                    // Intensità grana
-                    float grain = mix(0.0, 0.12, n);
-                    
-                    // Distanza dal mouse per effetto ombra/luce
                     float dist = distance(uv, vec2(u_mouse.x, 1.0 - u_mouse.y));
                     float shadow = smoothstep(0.1, 0.8, dist);
 
                     vec3 color;
                     if(u_lightMode > 0.5) {
-                        // Light Mode: sfondo chiaro, grana scura, ombra che scurisce
-                        color = vec3(0.96) - vec3(grain * 0.5) - (shadow * 0.05);
+                        // MODALITÀ LIGHT MIGLIORATA
+                        // Grana più densa e scura per risaltare sul bianco
+                        float grain = mix(0.0, 0.20, n); 
+                        // Sfondo base leggermente sporco + grana + ombra più profonda
+                        color = vec3(0.95) - vec3(grain) - (shadow * 0.12);
                     } else {
-                        // Dark Mode: sfondo scuro, grana chiara, ombra originale
+                        // MODALITÀ DARK ORIGINALE
+                        float grain = mix(0.0, 0.12, n);
                         color = vec3(grain) - (shadow * 0.15);
                     }
                     
@@ -402,7 +389,6 @@
         }
         requestAnimationFrame(animate);
 
-        // SUBTITLES HERO
         const subs = document.querySelectorAll('.subtitle-item');
         let currentSub = 0;
         setInterval(() => {
@@ -411,7 +397,6 @@
             subs[currentSub].classList.add('active');
         }, 4000);
 
-        // FADE OBSERVER
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -419,7 +404,6 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
 
-        // MODAL
         const modal = document.getElementById("infoModal");
         const btn = document.getElementById("infoBtn");
         const span = document.getElementsByClassName("close-modal")[0];
