@@ -17,9 +17,10 @@
             background-color: var(--bg);
             color: var(--text);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            overflow-x: hidden;
         }
 
-        /* --- NAVBAR (BARRA SOPRA) --- */
+        /* --- NAVBAR (IMMAGINE 3) --- */
         nav {
             position: absolute;
             top: 0;
@@ -61,7 +62,7 @@
             font-size: 13px;
         }
 
-        /* --- HERO ZONE CON NOISE LIMITATO --- */
+        /* --- HERO ZONE (IMMAGINE 1 E 3) --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -79,7 +80,7 @@
             width: 200%; height: 200%;
             pointer-events: none;
             z-index: 1;
-            opacity: 0.22; /* Intensità sabbia */
+            opacity: 0.22;
         }
         .noise-svg { width: 100%; height: 100%; }
 
@@ -124,72 +125,80 @@
             100% { opacity: 0; }
         }
 
-        /* --- CONTENUTI CENTRALI --- */
-        .main-content {
-            background: var(--bg);
-            position: relative;
-            z-index: 10;
+        /* --- CORPO CENTRALE (IMMAGINE 2) --- */
+        .content-body {
+            background-color: var(--bg);
+            padding-bottom: 100px;
         }
 
-        .top-cards {
+        .feature-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
             max-width: 1100px;
             margin: 0 auto;
             padding: 80px 40px;
-            background: #111; /* Colore sezione top screenshot */
+            gap: 40px;
         }
 
-        .card h2 { font-family: "Georgia", serif; font-size: 22px; margin-bottom: 15px; }
-        .card p { color: var(--text-dim); font-size: 14px; line-height: 1.4; }
+        .feature-card h2 { font-family: "Georgia", serif; font-size: 26px; margin-bottom: 15px; }
+        .feature-card p { color: var(--text-dim); font-size: 15px; line-height: 1.5; }
 
-        .big-title-section {
+        .center-heading {
             text-align: center;
-            padding: 120px 40px;
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 0 40px;
         }
 
-        .big-title-section h1 { font-family: "Georgia", serif; font-size: 52px; margin-bottom: 25px; }
-        .big-title-section p { font-size: 18px; color: var(--text-dim); }
+        .center-heading h1 { font-family: "Georgia", serif; font-size: 52px; margin-bottom: 20px; }
+        .center-heading p { color: var(--text-dim); font-size: 20px; }
 
-        .dual-grid {
+        .problem-solution {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
             max-width: 1100px;
             margin: 0 auto;
+            gap: 80px;
             padding: 60px 40px;
         }
 
-        .dual-grid h2 { font-family: "Georgia", serif; font-size: 24px; margin-bottom: 20px; }
-        .dual-grid p { color: var(--text-dim); font-size: 15px; margin-bottom: 20px; }
+        .problem-solution h2 { font-family: "Georgia", serif; font-size: 24px; margin-bottom: 20px; }
+        .problem-solution p { color: var(--text-dim); font-size: 15px; margin-bottom: 20px; }
 
-        .quote-box {
+        .manifesto-text {
             text-align: center;
-            max-width: 800px;
-            margin: 80px auto;
+            max-width: 850px;
+            margin: 100px auto;
             padding: 0 40px;
             font-size: 18px;
+            color: var(--text-dim);
             line-height: 1.6;
         }
 
-        /* --- FOOTER --- */
-        footer {
+        .take-back {
             text-align: center;
-            padding: 100px 40px 150px;
+            font-family: "Georgia", serif;
+            font-size: 24px;
+            margin-top: 40px;
+            color: #fff;
         }
 
-        footer h3 { font-family: "Georgia", serif; font-size: 28px; margin-bottom: 40px; }
-        
-        .btn-x {
+        /* --- FOOTER (IMMAGINE 2) --- */
+        footer {
+            text-align: center;
+            padding: 100px 40px;
+        }
+
+        footer h3 { font-family: "Georgia", serif; font-size: 28px; margin-bottom: 10px; }
+        footer p { color: var(--text-dim); margin-bottom: 30px; }
+
+        .x-button {
             background: #fff;
             color: #000;
             padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -199,10 +208,7 @@
 <body>
 
     <nav>
-        <div class="nav-logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10"/></svg>
-            Polkadot
-        </div>
+        <div class="nav-logo">Polkadot</div>
         <div class="nav-links">
             <a href="#">Philosophy</a>
             <a href="#">Tech</a>
@@ -233,48 +239,49 @@
         </div>
     </section>
 
-    <div class="main-content">
-        <section class="top-cards">
-            <div class="card">
+    <div class="content-body">
+        <section class="feature-grid">
+            <div class="feature-card">
                 <h2>Honest by design</h2>
                 <p>The rules are in the product, not buried in fine print. We couldn't change that even if we wanted to.</p>
             </div>
-            <div class="card">
+            <div class="feature-card">
                 <h2>You own it</h2>
                 <p>No company can seize or freeze your stuff, snoop on you, or shut you out. It's yours.</p>
             </div>
-            <div class="card">
+            <div class="feature-card">
                 <h2>Built for humans</h2>
                 <p>Everything you expect from modern apps. Nothing you have to compromise on.</p>
             </div>
         </section>
 
-        <section class="big-title-section">
+        <section class="center-heading">
             <h1>A new age of internet-enabled society</h1>
             <p>The way we connect, do business, and organize is changing. Polkadot is the social tooling to make it work.</p>
         </section>
 
-        <section class="dual-grid">
+        <section class="problem-solution">
             <div class="col">
                 <h2>The Problem</h2>
-                <p>Today's internet is built on a bad deal. You get free services. In exchange, companies own everything.</p>
-                <p>You don't have an account. You have permission to use someone else's platform until they decide otherwise.</p>
+                <p>Today's internet is built on a bad deal. You get free services. In exchange, companies own everything: your photos, your messages, your relationships. They watch what you do. They decide what you see. They can lock you out whenever they want.</p>
+                <p>You don't have an account. You have permission to use someone else's platform, on their terms, until they decide otherwise.</p>
             </div>
             <div class="col">
                 <h2>A Different Way</h2>
-                <p>What if the apps you use couldn't spy on you? Not because they promised not to, but because it is not within their ability.</p>
-                <p>We're building the social layer for this different kind of internet. That's Polkadot.</p>
+                <p>What if the apps you use couldn't spy on you? Not because they promised not to, but because it is not within their ability. What if your stuff couldn't be frozen, your data couldn't be sold, and your apps couldn't disappear?</p>
+                <p>We're building the social layer for this different kind of internet. Products that feel familiar, built on different foundations. That's Polkadot.</p>
             </div>
         </section>
 
-        <div class="quote-box">
-            The early internet was built by people who believed in transparency and freedom. They were right. We're taking it back.
-        </div>
+        <section class="manifesto-text">
+            <p>The early internet was built by people who believed in transparency and freedom. They were right about what technology could enable. What they missed was that values need enforcement to survive. On Polkadot, transparency, user control, and unchangeable rules are properties of the platform itself.</p>
+            <div class="take-back">They took the internet from us. We're taking it back.</div>
+        </section>
 
         <footer>
             <h3>Stay Updated</h3>
-            <p style="color:var(--text-dim); margin-bottom: 30px;">We're just getting started.</p>
-            <a href="#" class="btn-x">Follow on X</a>
+            <p>We're just getting started.</p>
+            <a href="#" class="x-button">Follow on X</a>
         </footer>
     </div>
 
