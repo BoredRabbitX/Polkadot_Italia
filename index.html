@@ -1,167 +1,239 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Polkadot</title>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Polkadot | Protocols for prosperity.</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #E6007A;
-            --bg-black: #000000;
-            --text-white: #ffffff;
-            --grey-900: #111111;
+            /* Colori ufficiali Brand Kit */
+            --grey-950: #0F0F0F; /* Near Black */
+            --grey-900: #1C1917;
+            --grey-800: #292524;
+            --grey-500: #78716C;
+            --grey-400: #A8A29E;
+            --grey-200: #E7E5E4;
+            --cool-gray: #E5E7EB;
+            --pink-accent: #FF2867;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: var(--bg-black);
-            color: var(--text-white);
-            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--grey-950);
+            color: var(--cool-gray);
+            font-family: 'DM Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* NAVBAR CLONATA DALL'HTML ORIGINALE */
+        /* --- NAVBAR --- */
         .navbar {
+            height: 80px;
+            background-color: var(--grey-950); /* Sfondo pieno, no noise */
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 80px;
             padding: 0 40px;
-            background-color: var(--bg-black); /* Sfondo pieno come richiesto */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .navbar-left {
+        .nav-left {
             display: flex;
             align-items: center;
             gap: 12px;
+            text-decoration: none;
         }
 
-        /* Logo SVG Polkadot */
-        .logo-svg {
-            width: 32px;
-            height: 32px;
-            fill: var(--accent);
+        .logo-img {
+            width: 28px;
+            height: 28px;
         }
 
-        .brand-text {
-            font-family: 'Unbounded', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            text-transform: lowercase;
-            color: var(--text-white);
+        .brand-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            color: #ffffff;
+            letter-spacing: -0.02em;
         }
 
-        /* CONTENUTO DASHBOARD */
-        .main-container {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
         }
 
-        .review-card {
+        .nav-link {
+            color: var(--grey-400);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: #ffffff; }
+
+        .btn-sign-in {
             background-color: var(--grey-900);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 24px;
-        }
-
-        .username {
-            font-family: 'Unbounded', sans-serif;
-            color: var(--accent);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 12px;
-        }
-
-        .comment {
-            font-size: 18px;
-            line-height: 1.5;
-            margin-bottom: 30px;
-            color: #e5e5e5;
-        }
-
-        /* INTERFACCIA RISPOSTA */
-        .reply-box {
-            background: rgba(255, 255, 255, 0.03);
+            color: #ffffff;
+            border: 1px solid var(--grey-800);
+            padding: 8px 18px;
             border-radius: 8px;
-            padding: 20px;
-        }
-
-        textarea {
-            width: 100%;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 15px;
-            font-family: 'Inter', sans-serif;
-            border-radius: 6px;
-            resize: none;
-            box-sizing: border-box;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .btn-submit {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            font-family: 'Unbounded', sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 4px;
-            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
-            text-transform: uppercase;
         }
 
-        .btn-submit:hover {
-            opacity: 0.9;
+        /* --- HERO SECTION (L'unica con il noise) --- */
+        .hero {
+            position: relative;
+            padding: 160px 20px;
+            text-align: center;
+            background-color: var(--grey-950);
+            /* L'effetto noise è limitato alla sezione centrale hero come da screenshot */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
         }
+
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(60px, 10vw, 100px);
+            margin: 0;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: var(--grey-500);
+            margin-top: 20px;
+        }
+
+        /* --- FEATURES GRID --- */
+        .features {
+            max-width: 1200px;
+            margin: 80px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 0 40px;
+        }
+
+        .feature-item h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            color: var(--grey-500);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* --- CONTENT SECTION --- */
+        .content-block {
+            max-width: 900px;
+            margin: 120px auto;
+            text-align: center;
+            padding: 0 40px;
+        }
+
+        .content-block h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 40px;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .col h4 { font-weight: 700; color: #ffffff; margin-bottom: 20px; }
+        .col p { color: var(--grey-500); line-height: 1.7; font-size: 15px; }
+
+        /* --- FOOTER --- */
+        .footer {
+            padding: 60px 40px;
+            border-top: 1px solid var(--grey-900);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--grey-500);
+        }
+
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: var(--grey-500); text-decoration: none; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="navbar-left">
-            <svg class="logo-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="32" cy="32" r="32"/>
-                <circle cx="32" cy="32" r="12" fill="white"/>
-            </svg>
-            <span class="brand-text">polkadot</span>
+        <a href="#" class="nav-left">
+            <img src="polkadot-icon__cool-gray-on-near-black.png" alt="Polkadot Icon" class="logo-img">
+            <span class="brand-name">Polkadot</span>
+        </a>
+        <div class="nav-right">
+            <a href="#" class="nav-link">Philosophy</a>
+            <a href="#" class="nav-link">Tech</a>
+            <a href="#" class="nav-link">Platform</a>
+            <a href="#" class="nav-link">Ecosystem</a>
+            <button class="btn-sign-in">Sign in</button>
         </div>
     </nav>
 
-    <main class="main-container">
-        <div class="review-card">
-            <div class="username">Network_User_01</div>
-            <p class="comment">"The parachain auction system is incredibly efficient, but I'd like to see more tools for small merchants."</p>
-            
-            <div class="reply-box">
-                <textarea rows="3" placeholder="Scrivi la tua risposta ufficiale..."></textarea>
-                <button class="btn-submit">Invia Risposta</button>
-            </div>
-        </div>
+    <header class="hero">
+        <h1>Polkadot</h1>
+        <p>Protocols for prosperity.</p>
+    </header>
 
-        <div class="review-card">
-            <div class="username">Web3_Dev_Italy</div>
-            <p class="comment">"Great UI, very consistent with the Polkadot design system. Good job."</p>
-            
-            <div class="reply-box">
-                <textarea rows="3" placeholder="Scrivi la tua risposta ufficiale..."></textarea>
-                <button class="btn-submit">Invia Risposta</button>
+    <section class="features">
+        <div class="feature-item">
+            <h3>Honest by design</h3>
+            <p>The rules are in the product, not buried in fine print. We couldn't change that even if we wanted to.</p>
+        </div>
+        <div class="feature-item">
+            <h3>You own it</h3>
+            <p>No company can seize or freeze your stuff, snoop on you, or shut you out. It's yours.</p>
+        </div>
+        <div class="feature-item">
+            <h3>Built for humans</h3>
+            <p>Everything you expect from modern apps. Nothing you have to compromise on.</p>
+        </div>
+    </section>
+
+    <section class="content-block">
+        <h2>A new age of internet-enabled society</h2>
+        <div class="columns">
+            <div class="col">
+                <h4>The Problem</h4>
+                <p>Today's internet is built on a bad deal. You get free services. In exchange, companies own everything: your photos, your messages, your relationships.</p>
+            </div>
+            <div class="col">
+                <h4>A Different Way</h4>
+                <p>What if the apps you use couldn't spy on you? Not because they promised not to, but because it is not within their ability.</p>
             </div>
         </div>
-    </main>
+    </section>
+
+    <footer class="footer">
+        <div>© 2025</div>
+        <div class="footer-links">
+            <a href="#">Support</a>
+            <a href="#">Wiki</a>
+            <a href="#">About</a>
+        </div>
+    </footer>
 
 </body>
 </html>
