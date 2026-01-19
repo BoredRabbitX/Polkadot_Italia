@@ -3,25 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polkadot | Sovereignty</title>
+    <title>Polkadot</title>
     <style>
-        :root {
-            --bg-color: #000;
-            --text-main: #fff;
-            --text-dim: #ccc;
-        }
-
+        /* RESET E BASE */
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
-            background-color: var(--bg-color);
+            background-color: #000;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            color: var(--text-main);
-            scroll-behavior: smooth;
+            color: #fff;
+            overflow-x: hidden;
         }
 
-        /* --- NOISE DINAMICO FISSO (NON TOCCARE) --- */
+        /* --- NOISE IDENTICO ALL'IMMAGINE (FISSO SU TUTTA LA PAGINA) --- */
         .noise-overlay {
             position: fixed;
             top: -50%;
@@ -29,120 +24,105 @@
             width: 200%;
             height: 200%;
             pointer-events: none;
-            z-index: 9999; /* Sopra a tutto */
+            z-index: 9999;
             opacity: 0.18;
         }
+        .noise-svg { width: 100%; height: 100%; }
 
-        .noise-svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* --- NAVBAR --- */
-        nav {
-            position: fixed;
+        /* --- BARRA IN ALTO --- */
+        header {
+            position: absolute;
             top: 0;
             width: 100%;
-            padding: 25px 50px;
+            padding: 30px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
             z-index: 100;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
         }
-
-        .logo-nav {
-            font-weight: 700;
-            font-size: 20px;
-            letter-spacing: -1px;
-        }
-
         .nav-links a {
-            color: var(--text-main);
+            color: #fff;
             text-decoration: none;
             margin-left: 30px;
             font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.7;
-            transition: 0.3s;
+            opacity: 0.8;
         }
 
-        .nav-links a:hover { opacity: 1; }
-
-        /* --- HERO ZONE (IDENTICA ALL'IMMAGINE) --- */
+        /* --- HERO ZONE (SABBIA E FADE) --- */
         .hero {
-            position: relative;
-            width: 100%;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
         }
-
         .title {
             font-family: "Georgia", serif;
-            font-size: clamp(60px, 10vw, 110px);
+            font-size: 110px;
             font-weight: 700;
             margin: 0;
             letter-spacing: -3px;
         }
-
         .subtitle-container {
-            height: 40px;
+            height: 30px;
             margin-top: 15px;
             position: relative;
             width: 100%;
         }
-
         .subtitle {
-            font-size: clamp(18px, 2vw, 24px);
+            font-size: 24px;
             font-weight: 300;
             opacity: 0;
             position: absolute;
             width: 100%;
             left: 0;
             top: 0;
-            color: var(--text-dim);
+            color: #ccc;
             animation: fadeTransition 16s infinite;
         }
-
         .subtitle:nth-child(1) { animation-delay: 0s; }
         .subtitle:nth-child(2) { animation-delay: 4s; }
         .subtitle:nth-child(3) { animation-delay: 8s; }
         .subtitle:nth-child(4) { animation-delay: 12s; }
 
         @keyframes fadeTransition {
-            0% { opacity: 0; transform: translateY(8px); }
+            0% { opacity: 0; transform: translateY(5px); }
             5% { opacity: 1; transform: translateY(0); }
             20% { opacity: 1; transform: translateY(0); }
-            25% { opacity: 0; transform: translateY(-8px); }
+            25% { opacity: 0; transform: translateY(-5px); }
             100% { opacity: 0; }
         }
 
-        /* --- CONTENUTI EXTRA --- */
-        .content-section {
+        /* --- CONTENUTI RIPRISTINATI --- */
+        .main-content {
             padding: 100px 50px;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            line-height: 1.6;
         }
-
-        .content-section h2 {
-            font-size: 40px;
-            margin-bottom: 30px;
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
         }
+        .card {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+        .card h3 { font-size: 24px; }
+        .card p { color: #888; line-height: 1.6; }
 
         /* --- FOOTER --- */
         footer {
-            padding: 50px;
-            border-top: 1px solid #333;
-            text-align: center;
-            font-size: 13px;
-            color: #666;
+            padding: 80px 50px;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -160,14 +140,15 @@
         </svg>
     </div>
 
-    <nav>
-        <div class="logo-nav">Polkadot.</div>
+    <header>
+        <div class="logo"><strong>Polkadot</strong></div>
         <div class="nav-links">
             <a href="#">Network</a>
             <a href="#">Community</a>
-            <a href="#">Build</a>
+            <a href="#">Ecosystem</a>
+            <a href="#">Blog</a>
         </div>
-    </nav>
+    </header>
 
     <section class="hero">
         <h1 class="title">Polkadot</h1>
@@ -179,14 +160,22 @@
         </div>
     </section>
 
-    <main class="content-section">
-        <h2>The multichain vision.</h2>
-        <p>Polkadot enables cross-chain registries and cross-chain computation. Any type of data can be sent between blockchains. This is not just about tokens; it's about a decentralized web where users own their data and identity.</p>
-        <p>Everything you see here is covered by a layer of organic noise to maintain the gritty, analog aesthetic you requested.</p>
+    <main class="main-content">
+        <div class="grid">
+            <div class="card">
+                <h3>Scalability</h3>
+                <p>Polkadot allows multiple transactions to be processed in parallel, increasing the overall network capacity.</p>
+            </div>
+            <div class="card">
+                <h3>Governance</h3>
+                <p>A sophisticated voting system where everyone has a voice in the network's future development.</p>
+            </div>
+        </div>
     </main>
 
     <footer>
-        &copy; 2026 Polkadot Network. Software for sovereignty.
+        <div>© 2026 Polkadot Network</div>
+        <div>GitHub · Twitter · Discord</div>
     </footer>
 
 </body>
