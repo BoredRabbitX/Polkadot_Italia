@@ -1,0 +1,33 @@
+{
+  "wallets": {
+    "software": [
+      {
+        "name": "Nova",
+        "description": "Mobile-first. Oltre 100 reti, staking, governance, supporto hardware wallet.",
+        "href": "#"
+      },
+      {
+        "name": "Talisman",
+        "description": "Estensione browser con portale web. Portfolio, staking, trasferimenti cross-chain.",
+        "href": "#"
+      },
+      {
+        "name": "SubWallet",
+        "description": "Desktop e mobile. Polkadot, Ethereum e catene Substrate in un unico posto.",
+        "href": "#"
+      }
+    ],
+    "hardware": [
+      {
+        "name": "Polkadot Vault",
+        "description": "Trasforma un vecchio telefono in un hardware wallet. Air-gapped, firma basata su QR.",
+        "href": "#"
+      },
+      {
+        "name": "Ledger",
+        "description": "App nativa Polkadot con supporto per staking e governance.",
+        "href": "#"
+      }
+    ]
+  }
+}
