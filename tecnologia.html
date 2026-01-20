@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polkadot - Tech</title>
+    <title>Tecnologia | Polkadot Italia</title>
     <style>
         :root {
             --bg-color: #000000;
@@ -126,7 +126,7 @@
 
         .defense-section h2 { text-align: left; }
 
-        /* Stats Cards */
+        /* --- STATS SECTION AGGIORNATA --- */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -136,26 +136,56 @@
 
         .stat-card {
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 4px;
-            position: relative;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: left;
+            border: 1px solid #222;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
         }
 
         .stat-value {
             font-size: 32px;
             font-weight: bold;
+            color: #fff;
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--gray-text);
+            margin-top: 4px;
         }
 
         .stat-sub {
-            font-size: 10px;
-            color: #666;
-            margin-top: 5px;
+            font-size: 11px;
+            color: #555;
+            margin-top: 6px;
         }
+
+        /* Animazione Curve SVG */
+        .chart-svg {
+            width: 70px;
+            height: 35px;
+        }
+
+        .path-anim {
+            stroke: #ffffff;
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 120;
+            stroke-dashoffset: 120;
+            animation: drawLine 2s ease-out forwards;
+        }
+
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
+        /* -------------------------------- */
 
         /* Info List */
         .info-row {
@@ -266,24 +296,47 @@
             
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-value">+54%</div>
+                    <div class="stat-header">
+                        <div class="stat-value">+<span class="count" data-target="54">0</span>%</div>
+                        <svg class="chart-svg" viewBox="0 0 100 40">
+                            <path class="path-anim" d="M0,35 Q25,30 50,20 T100,5" />
+                        </svg>
+                    </div>
                     <div class="stat-label">Account unici</div>
-                    <div class="stat-sub">28.4M nel 2025</div>
+                    <div class="stat-sub">20.4M nel 2025</div>
                 </div>
+
                 <div class="stat-card">
-                    <div class="stat-value">+48%</div>
+                    <div class="stat-header">
+                        <div class="stat-value">+<span class="count" data-target="48">0</span>%</div>
+                        <svg class="chart-svg" viewBox="0 0 100 40">
+                            <path class="path-anim" d="M0,38 Q30,35 60,25 T100,10" />
+                        </svg>
+                    </div>
                     <div class="stat-label">Nuovi account</div>
                     <div class="stat-sub">13.5M nel 2025</div>
                 </div>
+
                 <div class="stat-card">
-                    <div class="stat-value">+26%</div>
+                    <div class="stat-header">
+                        <div class="stat-value">+<span class="count" data-target="26">0</span>%</div>
+                        <svg class="chart-svg" viewBox="0 0 100 40">
+                            <path class="path-anim" d="M0,30 Q40,30 70,25 T100,20" />
+                        </svg>
+                    </div>
                     <div class="stat-label">Trasferimenti cross-chain</div>
                     <div class="stat-sub">528K nel 2025</div>
                 </div>
+
                 <div class="stat-card">
-                    <div class="stat-value">+4%</div>
+                    <div class="stat-header">
+                        <div class="stat-value">+<span class="count" data-target="4">0</span>%</div>
+                        <svg class="chart-svg" viewBox="0 0 100 40">
+                            <path class="path-anim" d="M0,25 Q50,25 100,22" />
+                        </svg>
+                    </div>
                     <div class="stat-label">Account attivi</div>
-                    <div class="stat-sub">1.2M nel 2025</div>
+                    <div class="stat-sub">12M nel 2025</div>
                 </div>
             </div>
 
@@ -340,7 +393,7 @@
     </main>
 
     <footer>
-        <div>© 2025</div>
+        <div>© 2026</div>
         <div style="display: flex; gap: 20px;">
             <a href="#" style="color:#666; text-decoration:none;">Support</a>
             <a href="#" style="color:#666; text-decoration:none;">Wiki</a>
@@ -351,6 +404,27 @@
             <span>GitHub</span>
         </div>
     </footer>
+
+    <script>
+        // Animazione numeri
+        const counters = document.querySelectorAll('.count');
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const speed = 100; 
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+    </script>
 
 </body>
 </html>
