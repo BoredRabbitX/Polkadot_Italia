@@ -1,4 +1,4 @@
-/* style.css */
+/* --- FONTS & VARIABLES --- */
 @font-face {
     font-family: 'DM Sans';
     src: url(https://fonts.gstatic.com/s/dmsans/v14/rP2Fp2ywxg089UriCZa4Hz-A.woff2) format("woff2");
@@ -9,41 +9,72 @@
 }
 
 :root {
-    --font-sans: 'DM Sans', sans-serif;
-    --font-serif: 'DM Serif Display', serif;
-    --grey-950: #0F0F0F;
+    --bg-dark: #0F0F0F;
     --grey-900: #1C1917;
     --cool-gray: #E5E7EB;
-    --text-main: #FFF;
-    --bg-nav: rgba(15, 15, 15, 0.4);
-}
-
-body.light-mode {
-    --grey-950: #F5F5F4;
-    --grey-900: #E7E5E4;
-    --cool-gray: #1C1917;
-    --text-main: #0F0F0F;
-    --bg-nav: rgba(245, 245, 244, 0.6);
+    --accent: #E6007A; /* Polkadot Pink */
+    --font-sans: 'DM Sans', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+    --nav-height: 64px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body, html { 
-    background-color: var(--grey-950); 
-    color: var(--cool-gray); 
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--cool-gray);
     font-family: var(--font-sans);
-    transition: background-color 0.5s ease;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Navigazione Comune */
-nav {
-    position: fixed; top: 0; width: 100%; height: 56px;
+/* --- NOISE EFFECT --- */
+.noise {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05; pointer-events: none; z-index: 9999;
+}
+
+/* --- GLOBAL HEADER & MENU --- */
+header {
+    position: fixed; top: 0; width: 100%; height: var(--nav-height);
+    background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     display: flex; justify-content: space-between; align-items: center;
-    padding: 0 40px; z-index: 1000; background: var(--bg-nav);
-    backdrop-filter: blur(12px); border-bottom: 1px solid var(--grey-900);
+    padding: 0 5%; z-index: 1000;
 }
 
-.nav-links { display: flex; gap: 28px; }
-.nav-links a { font-size: 11px; text-decoration: none; color: var(--cool-gray); opacity: 0.6; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; color: white; }
 
-/* Canvas di sfondo */
-#gl-canvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
+nav ul { display: flex; list-style: none; gap: 30px; }
+nav a { 
+    text-decoration: none; color: var(--cool-gray); 
+    font-size: 0.8rem; letter-spacing: 1px; opacity: 0.7; transition: 0.3s;
+}
+nav a:hover { opacity: 1; color: var(--accent); }
+
+/* --- MOBILE MENU --- */
+.menu-toggle { display: none; cursor: pointer; }
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    nav { 
+        position: fixed; top: var(--nav-height); right: -100%; width: 100%; height: 100vh;
+        background: var(--bg-dark); transition: 0.3s; 
+    }
+    nav.active { right: 0; }
+    nav ul { flex-direction: column; padding: 40px; }
+}
+
+/* --- CANVAS BACKGROUND --- */
+#gl-canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+
+/* --- GLOBAL FOOTER --- */
+footer {
+    padding: 80px 5% 40px; border-top: 1px solid rgba(255,255,255,0.05);
+    background: var(--bg-dark); text-align: center;
+}
+.footer-links { margin-bottom: 30px; display: flex; justify-content: center; gap: 20px; }
+
+/* --- ANIMATIONS --- */
+.fade-section { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+.fade-section.visible { opacity: 1; transform: translateY(0); }
