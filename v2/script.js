@@ -1,34 +1,48 @@
-// script.js
-
-// 1. Gestione Menu Mobile
-const menuToggle = document.getElementById('mobile-menu');
-const navList = document.getElementById('nav-list');
-
-if (menuToggle) {
-    menuToggle.onclick = (e) => {
-        e.stopPropagation();
-        navList.classList.toggle('active');
-    };
+// --- MENU LOGIC ---
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('nav');
+if(menuToggle) {
+    menuToggle.onclick = () => nav.classList.toggle('active');
 }
 
-document.addEventListener('click', () => {
-    if (navList) navList.classList.remove('active');
-});
-
-// 2. Osservatore per animazioni al caricamento (Fade In)
+// --- FADE OBSERVER ---
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            if(entry.target.classList.contains('stats-container')) startCounters();
+        }
     });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
 
-// 3. Logica Background Animato (Three.js)
-// Assicurati che Three.js sia caricato nell'HTML prima di questo script
-function initBackground() {
-    const canvas = document.getElementById('gl-canvas');
-    if (!canvas) return;
-    // ... (inserire qui la logica Three.js presente nei tuoi file)
+// --- COUNTERS (per pagina Tecnologia) ---
+function startCounters() {
+    document.querySelectorAll('.count').forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const update = () => {
+            if (count < target) {
+                count += target / 50;
+                counter.innerText = Math.ceil(count);
+                setTimeout(update, 30);
+            } else counter.innerText = target;
+        };
+        update();
+    });
 }
-initBackground();
+
+// --- SUBTITLES HERO (per Home) ---
+const subs = document.querySelectorAll('.subtitle-item');
+if(subs.length > 0) {
+    let currentSub = 0;
+    setInterval(() => {
+        subs[currentSub].classList.remove('active');
+        currentSub = (currentSub + 1) % subs.length;
+        subs[currentSub].classList.add('active');
+    }, 4000);
+}
+
+// --- THREE.JS BACKGROUND ---
+// [Qui va la logica del vertexShader e fragmentShader estratta dai tuoi file]
+// Inizializza renderer, scena e camera come nei tuoi originali...
